@@ -1,0 +1,36 @@
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Inject,
+} from '@nestjs/common';
+import { AuthService } from '../domain/services/auth.service';
+import { RegisterUserDto } from './dto/register-user.dto';
+import { LoginUserDto } from './dto/login-user.dto';
+
+@Controller('auth')
+export class AuthController {
+  constructor(
+    @Inject('AuthService') private readonly authService: AuthService,
+  ) {}
+
+  @Post('/register')
+  register(@Body() registerUser: RegisterUserDto) {
+    return this.authService.register(
+      registerUser.firstName,
+      registerUser.lastName,
+      registerUser.email,
+      registerUser.password,
+      registerUser.role,
+    );
+  }
+
+  @Post('/login')
+  login(@Body() loginUser: LoginUserDto) {
+    return this.authService.login(loginUser.email, loginUser.password);
+  }
+}
