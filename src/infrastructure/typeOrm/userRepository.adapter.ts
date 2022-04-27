@@ -12,11 +12,17 @@ export class UserRepositoryAdapter implements IUsersRepository {
     this.userRepository = em.getRepository(UserSchema);
   }
 
-  findAll(): any {}
+  findAll(): any {
+    return null;
+  }
 
-  findById(id: number): any {}
+  findById(id: number): any {
+    return null;
+  }
 
-  remove(id: number): any {}
+  remove(id: number): any {
+    return null;
+  }
 
   update(
     id: number,
@@ -25,5 +31,7 @@ export class UserRepositoryAdapter implements IUsersRepository {
     email: string,
     password: string,
     role: string,
-  ): any {}
+  ): any {
+    return null;
+  }
 }

@@ -12,7 +12,9 @@ export class AuthRepositoryAdapter implements IAuthRepository {
     this.userRepository = em.getRepository(UserSchema);
   }
 
-  login(email: string, password: string): any {}
+  login(email: string, password: string): any {
+    return null;
+  }
 
   register(
     firstName: string,
@@ -20,5 +22,7 @@ export class AuthRepositoryAdapter implements IAuthRepository {
     email: string,
     password: string,
     role: string,
-  ): any {}
+  ): any {
+    return null;
+  }
 }
