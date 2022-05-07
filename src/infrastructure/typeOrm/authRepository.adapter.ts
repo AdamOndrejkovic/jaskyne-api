@@ -12,8 +12,10 @@ export class AuthRepositoryAdapter implements IAuthRepository {
     this.userRepository = em.getRepository(UserSchema);
   }
 
-  login(email: string, password: string): any {
-    return null;
+  async login(email: string, password: string): Promise<any> {
+    const user = await this.findUserWithEmail(email);
+    if (user != null) {
+    }
   }
 
   register(
@@ -24,5 +26,11 @@ export class AuthRepositoryAdapter implements IAuthRepository {
     role: string,
   ): any {
     return null;
+  }
+
+  findUserWithEmail(email: string): Promise<User | null> {
+    return this.userRepository.findOneBy({
+      email: email,
+    });
   }
 }
