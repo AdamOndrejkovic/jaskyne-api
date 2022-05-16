@@ -1,3 +1,5 @@
+import { User } from '../../core/entities/user.entity';
+
 export interface IAuthRepository {
   register(
     firstName: string,
@@ -5,7 +7,7 @@ export interface IAuthRepository {
     email: string,
     password: string,
     role: string,
-  ): any;
+  ): Promise<User>;
 
-  login(email: string, password: string): any;
+  login(email: string, password: string): Promise<User>;
 }

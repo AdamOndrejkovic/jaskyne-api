@@ -1,8 +1,8 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateCaveDto } from './dto/create-cave.dto';
 import { UpdateCaveDto } from './dto/update-cave.dto';
 import { Cave } from './entities/cave.entity';
-import { Model } from 'mongoose';
+import { Model, Schema, Types } from 'mongoose';
 
 @Injectable()
 export class CavesService {
@@ -17,16 +17,27 @@ export class CavesService {
     return this.cavesModel.find().exec();
   }
 
-  findOne(id: number) {
-    return this.cavesModel.findById(id).exec();
+  async findOne(id: string) {
+    const cave = await this.cavesModel.findOne({ _id: id }).exec();
+    if (!cave) {
+      throw new NotFoundException(`Cave #${id} not found`);
+    }
+    return cave;
   }
 
-  update(id: number, updateCaveDto: UpdateCaveDto) {
-    const updateCaves = new this.cavesModel(updateCaveDto);
-    return this.cavesModel.findByIdAndUpdate(id, updateCaves);
+  async update(id: number, updateCaveDto: UpdateCaveDto) {
+    const existingCave = await this.cavesModel
+      .findOneAndUpdate({ _id: id }, { $set: updateCaveDto }, { new: true })
+      .exec();
+
+    if (!existingCave) {
+      throw new NotFoundException(`Cave #${id} not found`);
+    }
+    return existingCave;
   }
 
-  remove(id: number) {
-    return this.cavesModel.findByIdAndRemove(id).exec();
+  async remove(id: string) {
+    const cave = await this.findOne(id);
+    return cave.remove();
   }
 }

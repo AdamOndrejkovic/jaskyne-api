@@ -27,7 +27,7 @@ export class CavesController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.cavesService.findOne(+id);
+    return this.cavesService.findOne(id);
   }
 
   @Patch(':id')
@@ -37,6 +37,6 @@ export class CavesController {
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.cavesService.remove(+id);
+    return this.cavesService.remove(id);
   }
 }

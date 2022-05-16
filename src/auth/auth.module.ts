@@ -17,9 +17,8 @@ import { UserSchema } from '../infrastructure/typeORM/user.schema';
     {
       inject: ['AuthRepository'],
       provide: 'AuthService',
-      useFactory: (authRepository: IAuthRepository) => {
-        new AuthService(authRepository);
-      },
+      useFactory: (authRepository: IAuthRepository) =>
+        new AuthService(authRepository),
     },
   ],
 })

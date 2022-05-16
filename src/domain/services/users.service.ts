@@ -1,11 +1,7 @@
 import { IUsersRepository } from '../borders/usersRepository.interface';
 
 export class UsersService {
-  private userRepo: IUsersRepository;
-
-  constructor(userRepo: IUsersRepository) {
-    this.userRepo = userRepo;
-  }
+  constructor(private readonly userRepo: IUsersRepository) {}
 
   findAll() {
     return this.userRepo.findAll();

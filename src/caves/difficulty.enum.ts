@@ -1,5 +1,5 @@
 export enum DifficultyEnum {
   Easy = 'Ľahká',
-  Medium = 'Stredná',
+  Medium = 'Stredne náročná',
   Hard = 'Náročná',
 }

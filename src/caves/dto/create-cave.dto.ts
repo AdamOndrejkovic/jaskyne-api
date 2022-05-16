@@ -8,7 +8,9 @@ export class CreateCaveDto {
   @ApiProperty()
   description: string;
   @ApiProperty()
-  location: RegionEnum;
+  location: string;
+  @ApiProperty()
+  region: RegionEnum;
   @ApiProperty()
   difficulty: DifficultyEnum;
   @ApiProperty()

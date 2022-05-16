@@ -3,7 +3,6 @@ import { UsersService } from '../domain/services/users.service';
 import { UsersController } from './users.controller';
 import { UserRepositoryAdapter } from '../infrastructure/typeOrm/userRepository.adapter';
 import { IUsersRepository } from '../domain/borders/usersRepository.interface';
-
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserSchema } from '../infrastructure/typeORM/user.schema';
 

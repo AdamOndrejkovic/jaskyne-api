@@ -1,11 +1,7 @@
 import { IAuthRepository } from '../borders/authRepository.interface';
 
 export class AuthService {
-  private authRepo: IAuthRepository;
-
-  constructor(authRepo: IAuthRepository) {
-    this.authRepo = authRepo;
-  }
+  constructor(private readonly authRepo: IAuthRepository) {}
 
   register(
     firstName: string,
