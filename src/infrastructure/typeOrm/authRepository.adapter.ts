@@ -1,4 +1,6 @@
 import {
+  HttpException,
+  HttpStatus,
   Injectable,
   NotFoundException,
   UnauthorizedException,
@@ -29,7 +31,13 @@ export class AuthRepositoryAdapter implements IAuthRepository {
       return user;
     }
 
-    throw new UnauthorizedException('Invalid login');
+    throw new HttpException(
+      {
+        status: HttpStatus.UNAUTHORIZED,
+        error: 'Login credentials incorrect',
+      },
+      HttpStatus.UNAUTHORIZED,
+    );
   }
 
   async register(
@@ -42,7 +50,13 @@ export class AuthRepositoryAdapter implements IAuthRepository {
     console.log('user repo');
     const user = await this.findUserWithEmail(email);
     if (user != null) {
-      return null;
+      throw new HttpException(
+        {
+          status: HttpStatus.INTERNAL_SERVER_ERROR,
+          error: 'Registration could not be completed',
+        },
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
     }
 
     const hashedPassword = await this.pentagon.generateHashedPassword(password);
