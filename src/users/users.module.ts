@@ -17,9 +17,8 @@ import { UserSchema } from '../infrastructure/typeORM/user.schema';
     {
       inject: ['UserRepository'],
       provide: 'UsersService',
-      useFactory: (userRepository: IUsersRepository) => {
-        new UsersService(userRepository);
-      },
+      useFactory: (userRepository: IUsersRepository) =>
+        new UsersService(userRepository),
     },
   ],
 })

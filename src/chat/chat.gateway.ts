@@ -7,6 +7,7 @@ import {
 import { ChatService } from '../domain/services/chat.service';
 import { CreateChatDto } from './dto/create-chat.dto';
 import { Server, Socket } from 'socket.io';
+import { Inject } from '@nestjs/common';
 
 @WebSocketGateway({
   cors: {
@@ -16,11 +17,13 @@ import { Server, Socket } from 'socket.io';
 export class ChatGateway {
   @WebSocketServer()
   server: Server;
-
-  constructor(private readonly chatService: ChatService) {}
+  constructor(
+    @Inject('ChatService') private readonly chatService: ChatService,
+  ) {}
 
   @SubscribeMessage('createChat')
   create(@MessageBody() createChatDto: CreateChatDto) {
+    console.log(createChatDto);
     this.server.emit(createChatDto.room, createChatDto);
     return this.chatService.create(
       createChatDto.userId,
