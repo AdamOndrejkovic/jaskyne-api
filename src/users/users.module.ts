@@ -5,18 +5,19 @@ import { UserRepositoryAdapter } from '../infrastructure/typeOrm/userRepository.
 import { IUsersRepository } from '../domain/borders/usersRepository.interface';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserSchema } from '../infrastructure/typeORM/user.schema';
+import { USER_REPOSITORY, USER_SERVICE } from '../common/cave.constants';
 
 @Module({
   imports: [TypeOrmModule.forFeature([UserSchema])],
   controllers: [UsersController],
   providers: [
     {
-      provide: 'UserRepository',
+      provide: USER_REPOSITORY,
       useClass: UserRepositoryAdapter,
     },
     {
-      inject: ['UserRepository'],
-      provide: 'UsersService',
+      inject: [USER_REPOSITORY],
+      provide: USER_SERVICE,
       useFactory: (userRepository: IUsersRepository) =>
         new UsersService(userRepository),
     },

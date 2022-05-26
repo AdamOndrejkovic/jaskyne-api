@@ -3,10 +3,11 @@ import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
 import { Post } from './entities/post.entity';
 import { Model } from 'mongoose';
+import { POST_MODEL } from '../common/cave.constants';
 
 @Injectable()
 export class PostsService {
-  constructor(@Inject('POST_MODEL') private postModel: Model<Post>) {}
+  constructor(@Inject(POST_MODEL) private postModel: Model<Post>) {}
 
   create(createPostDto: CreatePostDto): Promise<Post> {
     const post = new this.postModel(createPostDto);

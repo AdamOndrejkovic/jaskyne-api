@@ -8,6 +8,7 @@ import { ChatService } from '../domain/services/chat.service';
 import { CreateChatDto } from './dto/create-chat.dto';
 import { Server, Socket } from 'socket.io';
 import { Inject } from '@nestjs/common';
+import { CHAT_SERVICE } from '../common/cave.constants';
 
 @WebSocketGateway({
   cors: {
@@ -18,7 +19,7 @@ export class ChatGateway {
   @WebSocketServer()
   server: Server;
   constructor(
-    @Inject('ChatService') private readonly chatService: ChatService,
+    @Inject(CHAT_SERVICE) private readonly chatService: ChatService,
   ) {}
 
   @SubscribeMessage('createChat')

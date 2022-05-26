@@ -1,0 +1,9 @@
+export const CHAT_SERVICE = 'ChatService';
+export const CHAT_REPOSITORY = 'ChatRepository';
+export const CAVES_MODEL = 'CAVES_MODEL';
+export const AUTH_SERVICE = 'AuthService';
+export const AUTH_REPOSITORY = 'AuthRepository';
+export const USER_REPOSITORY = 'UserRepository';
+export const USER_SERVICE = 'UsersService';
+export const POST_MODEL = 'POST_MODEL';
+export const MONGO_DATABASE_CONNECTION = 'MONGO_DATABASE_CONNECTION';

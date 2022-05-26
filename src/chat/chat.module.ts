@@ -5,17 +5,18 @@ import { ChatRepositoryAdapter } from '../infrastructure/typeOrm/chatRepository.
 import { IChatRepository } from '../domain/borders/chatRepository.interface';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ChatSchema } from '../infrastructure/typeOrm/chat.schema';
+import { CHAT_REPOSITORY, CHAT_SERVICE } from '../common/cave.constants';
 
 @Module({
   imports: [TypeOrmModule.forFeature([ChatSchema])],
   providers: [
     {
-      provide: 'ChatRepository',
+      provide: CHAT_REPOSITORY,
       useClass: ChatRepositoryAdapter,
     },
     {
-      inject: ['ChatRepository'],
-      provide: 'ChatService',
+      inject: [CHAT_REPOSITORY],
+      provide: CHAT_SERVICE,
       useFactory: (chatRepository: IChatRepository) => {
         return new ChatService(chatRepository);
       },

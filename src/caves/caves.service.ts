@@ -3,10 +3,11 @@ import { CreateCaveDto } from './dto/create-cave.dto';
 import { UpdateCaveDto } from './dto/update-cave.dto';
 import { Cave } from './entities/cave.entity';
 import { Model, Schema, Types } from 'mongoose';
+import { CAVES_MODEL } from '../common/cave.constants';
 
 @Injectable()
 export class CavesService {
-  constructor(@Inject('CAVES_MODEL') private cavesModel: Model<Cave>) {}
+  constructor(@Inject(CAVES_MODEL) private cavesModel: Model<Cave>) {}
 
   create(createCaveDto: CreateCaveDto) {
     const cave = new this.cavesModel(createCaveDto);
