@@ -4,8 +4,8 @@ import { UsersController } from './users.controller';
 import { UserRepositoryAdapter } from '../infrastructure/typeOrm/userRepository.adapter';
 import { IUsersRepository } from '../domain/borders/usersRepository.interface';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserSchema } from '../infrastructure/typeORM/user.schema';
 import { USER_REPOSITORY, USER_SERVICE } from '../common/cave.constants';
+import { UserSchema } from '../infrastructure/typeOrm/user.schema';
 
 @Module({
   imports: [TypeOrmModule.forFeature([UserSchema])],

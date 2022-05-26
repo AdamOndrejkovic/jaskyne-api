@@ -4,8 +4,8 @@ import { AuthController } from './auth.controller';
 import { AuthRepositoryAdapter } from '../infrastructure/typeOrm/authRepository.adapter';
 import { IAuthRepository } from '../domain/borders/authRepository.interface';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserSchema } from '../infrastructure/typeORM/user.schema';
 import { AUTH_REPOSITORY, AUTH_SERVICE } from '../common/cave.constants';
+import { UserSchema } from '../infrastructure/typeOrm/user.schema';
 
 @Module({
   imports: [TypeOrmModule.forFeature([UserSchema])],
